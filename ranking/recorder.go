@@ -3,6 +3,7 @@ package ranking
 import (
 	"encoding/csv"
 	"io"
+	"math"
 )
 
 type SumCounter struct {
@@ -12,7 +13,7 @@ type SumCounter struct {
 
 type PlayerMean struct {
 	player string
-	mean   float32
+	mean   int
 }
 
 type Recorder struct {
@@ -77,7 +78,9 @@ func (r *Recorder) updateMean() {
 		if cnt == 0 {
 			continue
 		}
-		mean := float32(sumCounter.sum) / float32(cnt)
+		fmean := float64(sumCounter.sum) / float64(cnt)
+		fmean = math.Round(fmean)
+		mean := int(fmean)
 		r.meanBoard = append(r.meanBoard, &PlayerMean{player, mean})
 	}
 	sortMeanBoard(r.meanBoard)

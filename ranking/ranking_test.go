@@ -96,7 +96,7 @@ func TestAggregate(t *testing.T) {
 
 	meanBoard := recorder.meanBoard
 	meanTests := []PlayerMean{
-		{"player0001", 22345.0 / 2},
+		{"player0001", 11173},
 		{"player0002", 10000},
 	}
 	hits := 0
@@ -105,7 +105,7 @@ func TestAggregate(t *testing.T) {
 			if expected.player == calculated.player {
 				hits++
 				if expected.mean != calculated.mean {
-					t.Errorf("expected %f, got %f\n", expected.mean, calculated.mean)
+					t.Errorf("expected %d, got %d\n", expected.mean, calculated.mean)
 				}
 			}
 		}
@@ -156,11 +156,11 @@ func TestJudgeOutput(t *testing.T) {
 	judge.SetWriter(writer)
 	judge.Output()
 	expectedSlice := []string{
-		"1,player0001,11172.50",
-		"2,player0002,10000.00",
-		"3,player0031,300.00",
-		"3,player0041,300.00",
-		"5,player0021,100.00",
+		"1,player0001,11173",
+		"2,player0002,10000",
+		"3,player0031,300",
+		"3,player0041,300",
+		"5,player0021,100",
 	}
 
 	s := writer.String()
@@ -192,17 +192,17 @@ func TestPrintCompare(t *testing.T) {
 
 func TestIntegration(t *testing.T) {
 	es := []string{
-		"1,player0001,11563.33",
-		"2,player0002,10000.00",
-		"3,player001,1000.00",
-		"3,player002,1000.00",
-		"5,player0031,300.00",
-		"5,player0041,300.00",
-		"7,player0021,100.00",
-		"7,player01,100.00",
-		"7,player02,100.00",
-		"10,player031,30.00",
-		"10,player041,30.00",
+		"1,player0001,11563",
+		"2,player0002,10000",
+		"3,player001,1000",
+		"3,player002,1000",
+		"5,player0031,300",
+		"5,player0041,300",
+		"7,player0021,100",
+		"7,player01,100",
+		"7,player02,100",
+		"10,player031,30",
+		"10,player041,30",
 	}
 
 	filename := "../testdata/large.csv"

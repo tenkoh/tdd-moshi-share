@@ -9,7 +9,7 @@ import (
 const DISPLAY_MAX_RANK = 10
 
 type Judge struct {
-	last   float32
+	last   int
 	rank   int
 	skip   int
 	record *Recorder
@@ -18,7 +18,7 @@ type Judge struct {
 
 func NewJudge(r *Recorder) *Judge {
 	judge := new(Judge)
-	judge.last = 0.0
+	judge.last = 0
 	judge.rank = 0
 	judge.skip = 0
 	judge.record = r
@@ -48,6 +48,6 @@ func (j *Judge) Output() {
 		if j.rank > DISPLAY_MAX_RANK {
 			break
 		}
-		fmt.Fprintf(w, "%d,%s,%.2f\n", j.rank, playerMean.player, playerMean.mean)
+		fmt.Fprintf(w, "%d,%s,%d\n", j.rank, playerMean.player, playerMean.mean)
 	}
 }
